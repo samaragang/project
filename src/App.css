@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+
+body {
+  background-color: #0f121d;
+}
+
+/* App.css */
+
+.slider-container {
+  padding: 50px;
+}
+
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+.slider-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #d43d37;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+
+.slider-fill {
+  height: 100%;
+  border-radius: 50px;
+  background-color: #0084ff;
+  position: relative;
+}
+
+.slider-thumb {
+  position: absolute;
+  width: 30px;
+
+  right: 0;
+  padding: 5px;
+  background: #fff;
+  user-select: none;
+  border-radius: 5px;
+  color: #000;
+  transform: translate(50%, -50%);
+  top: 50%;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+}
+
+.slider-thumb::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 20px;
+  border: 2px solid hsla(0, 0%, 100%, .24);
+  border-radius: 7px;
+}
+
+.slider-pin {
+  position: absolute;
+  transform: translate(-50%, -122%);
+  left: 50%;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.slider-pin img{
+  width: 25px;
+  height: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+.slider-pin-lose::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: red;
+  transform: translate(-50%, 120%);
+  border-radius: 50%;
+  left: 50%;
+  z-index: 0;
+}
+.slider-pin-win::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: green;
+  transform: translate(-50%, 120%);
+  border-radius: 50%;
+  left: 50%;
+  z-index: 0;
+}
+
+.points-container {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.points-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.points-container input {
+  width: 80px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.points-container button {
+  color: black;
+  margin-left: 20px;
+}
