@@ -108,7 +108,7 @@ function Slider() {
               style={{ left: `${num}%` }}
             >
               <span className="pin-label">{num}</span>
-              <img src="./public/pin.svg" alt="pin" />
+              <img src="./pin.svg" alt="pin" />
             </div>
           )}
         </div>
