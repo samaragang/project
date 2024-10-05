@@ -7,7 +7,7 @@ function Slider() {
   const [deposit, setDeposit] = useState(points);
   const [num, setNum] = useState(null);
   const [result, setResult] = useState(null);
-  const [error, setError] = useState(''); // State for error messages
+  const [error, setError] = useState('');
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -30,6 +30,22 @@ function Slider() {
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleTouchStart = (e) => {
+    moveSlider(e.touches[0]);
+
+    const handleTouchMove = (e) => {
+      moveSlider(e.touches[0]);
+    };
+
+    const handleTouchEnd = () => {
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
   };
 
   const moveSlider = (e) => {
@@ -64,13 +80,11 @@ function Slider() {
   };
 
   const startGame = () => {
-    // Check if deposit is greater than points
     if (deposit > points) {
-      setError('Недостаточно поинтов на балансе'); // Set error message
-      return; // Exit the function early if not enough points
+      setError('Недостаточно поинтов на балансе');
+      return;
     }
 
-    // Clear the error message if points are sufficient
     setError('');
 
     const randomNumber = getRandomNumber();
@@ -97,7 +111,7 @@ function Slider() {
           <div>Интервал: {value.toFixed(2)}</div>
           <div>Шанс {value.toFixed(2)}%</div>
         </div>
-        <div className="slider-track" ref={sliderRef} onMouseDown={handleMouseDown}>
+        <div className="slider-track" ref={sliderRef} onMouseDown={handleMouseDown} onTouchStart={handleTouchStart}>
           <div className="slider-fill" style={{ width: `${value}%` }}>
             <span className="slider-thumb">{value.toFixed(2)}</span>
           </div>
@@ -122,10 +136,10 @@ function Slider() {
             max={points}
             min="0"
           />
-          <button onClick={()=>setDeposit(points)}>MAX</button>
+          <button onClick={() => setDeposit(points)}>MAX</button>
           <button onClick={startGame}>PLAY</button>
         </div>
-        {error && <div className="error-message">{error}</div>} {/* Display the error message */}
+        {error && <div className="error-message">{error}</div>}
       </div>
     </div>
   );
